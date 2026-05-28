@@ -21,7 +21,7 @@ fn void app_activate (Application *app, Pointer user_data) {
 
     Widget* lab = gtk4::label_new ("Hello from C3 😃");
     Widget* btn = gtk4::button_new_with_label ("Click me");
-    glib::signal_connect ((Pointer)btn, "clicked", &click_cb, (Pointer)win);
+    glib::signal_connect ((Pointer)btn, (CharPtr)"clicked", (Callback)&click_cb, (Pointer)win);
 
     gtk4::box_append ((Box*)box, lab);
     gtk4::box_append ((Box*)box, btn);
@@ -32,7 +32,7 @@ fn void app_activate (Application *app, Pointer user_data) {
 
 fn int main (int argc, char **argv) {
     Application* app = gtk4::application_new (APP_ID, (ApplicationFlags)0);
-    glib::signal_connect((Pointer)app, "activate", &app_activate, (Pointer)0);
+    glib::signal_connect((Pointer)app, (CharPtr)"activate", (Callback)&app_activate, (Pointer)0);
     CInt stat = glib::application_run ((Application*)app, argc, argv);
     glib::object_unref ((Pointer)app);
     return (int)stat;
