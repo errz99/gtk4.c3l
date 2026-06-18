@@ -18,7 +18,7 @@ struct Box {
 	inline Pointer parent;
 }
 
-enum Orientation : CInt {
+enum Orientation {
 	ORIENTATION_HORIZONTAL,
 	ORIENTATION_VERTICAL
 }
