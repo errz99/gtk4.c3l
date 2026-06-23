@@ -5,7 +5,7 @@ typedef CharPtr = ZString;
 typedef Callback = void*;
 typedef ClosureNotify = void*;
 
-struct Application {
+struct GApplication {
 	inline Pointer parent;
 }
 
@@ -21,7 +21,7 @@ enum ConnectFlags {
 	CONNECT_SWAPPED,
 }
 
-extern fn CInt Application.run(Application* this, CInt argc, char** argv) @cname("g_application_run");
+extern fn CInt GApplication.run(GApplication* this, CInt argc, char** argv) @cname("g_application_run");
 extern fn CULong signal_connect_data(
 	Pointer instance,
 	CharPtr detailed_signal,

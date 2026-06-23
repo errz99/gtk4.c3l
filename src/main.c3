@@ -10,8 +10,8 @@ fn void click_cb(Button* btn, Window* win) {
 	Window.destroy(win);
 }
 
-fn void app_activate(Application* app, Pointer user_data) {
-	Window* win = gtk4::window_new();
+fn void app_activate(GtkApplication* app, Pointer user_data) {
+	Window* win = gtk4::window_new(TOP_LEVEL);
 	Window.set_application(win, app);
 	Window.set_title(win, "GTK4 from C3");
 	Window.set_default_size(win, 400, 300);
@@ -31,9 +31,9 @@ fn void app_activate(Application* app, Pointer user_data) {
 }
 
 fn int main(int argc, char** argv) {
-	Application* app = gtk4::application_new(APP_ID, (ApplicationFlags)0);
+	GtkApplication* app = gtk4::application_new(APP_ID, APPLICATION_DEFAULT_FLAGS);
 	glib::signal_connect((Pointer)app, (CharPtr)"activate", (Callback)&app_activate, (Pointer)0);
-	CInt stat = glib::Application.run((Application*)app, argc, argv);
+	CInt stat = glib::GApplication.run((GApplication*)app, argc, argv);
 	glib::object_unref((Pointer)app);
 	return (int)stat;
 }
